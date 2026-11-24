@@ -1,0 +1,211 @@
+.chat-window {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ── WELCOME ── */
+.welcome {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  text-align: center;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* ── PARTICLES ── */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--brand);
+  pointer-events: none;
+  animation: floatParticle ease-in-out infinite;
+  filter: blur(0.5px);
+}
+[data-theme="dark"] .particle {
+  background: var(--brand);
+  box-shadow: 0 0 6px var(--brand-glow2);
+}
+
+/* ── HOLOGRAPHIC SIA LOGO ── */
+.sia-logo-wrap {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.sia-logo-core {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--brand) 0%, #0066cc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  box-shadow:
+    0 0 20px var(--brand-glow),
+    0 0 40px rgba(0,212,255,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.sia-logo-text {
+  font-family: var(--font-tech);
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -1px;
+  text-shadow: 0 0 12px rgba(255,255,255,0.8);
+}
+
+.sia-logo-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid var(--brand);
+  opacity: 0.4;
+  pointer-events: none;
+}
+.sia-logo-ring--1 {
+  width: 82px; height: 82px;
+  border-style: dashed;
+  animation: orbit 8s linear infinite;
+}
+.sia-logo-ring--2 {
+  width: 100px; height: 100px;
+  border-style: dotted;
+  opacity: 0.2;
+  animation: orbitRev 12s linear infinite;
+}
+
+.sia-logo-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,255,0.15) 0%, transparent 70%);
+  pointer-events: none;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* ── GREETING ── */
+.welcome-greeting { margin-bottom: 32px; }
+
+.welcome-time {
+  display: block;
+  font-family: var(--font-tech);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--brand);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+[data-theme="dark"] .welcome-time { animation: neonFlicker 4s ease-in-out infinite; }
+
+.welcome-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  letter-spacing: -0.4px;
+}
+
+.welcome-sub {
+  font-size: 15px;
+  color: var(--text-secondary);
+  max-width: 380px;
+  line-height: 1.6;
+}
+
+.keyword-highlight {
+  color: var(--brand);
+  font-weight: 600;
+  font-family: var(--font-tech);
+  font-size: 13px;
+}
+
+/* ── SUGGESTIONS ── */
+.suggestions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 640px;
+  width: 100%;
+}
+
+.suggestion-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.18s;
+  box-shadow: var(--shadow-sm);
+}
+
+.suggestion-card:hover {
+  border-color: var(--brand);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-glow), var(--shadow-sm);
+  background: var(--bg-glass);
+}
+
+[data-theme="dark"] .suggestion-card {
+  background: rgba(0,212,255,0.03);
+  border-color: rgba(0,212,255,0.12);
+}
+[data-theme="dark"] .suggestion-card:hover {
+  background: rgba(0,212,255,0.07);
+  border-color: rgba(0,212,255,0.4);
+}
+
+.suggestion-icon { font-size: 16px; flex-shrink: 0; }
+.suggestion-text { flex: 1; line-height: 1.4; }
+.suggestion-arrow {
+  color: var(--brand);
+  opacity: 0;
+  font-size: 12px;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.suggestion-card:hover .suggestion-arrow { opacity: 1; transform: translateX(2px); }
+
+/* ── MESSAGES ── */
+.messages-wrap {
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.messages-inner {
+  max-width: var(--chat-max);
+  margin: 0 auto;
+  padding: 24px 16px 8px;
+}
+
+@media (max-width: 768px) {
+  .suggestions-grid { grid-template-columns: 1fr 1fr; }
+  .welcome-title { font-size: 22px; }
+}
+@media (max-width: 480px) {
+  .suggestions-grid { grid-template-columns: 1fr; max-width: 320px; }
+  .messages-inner { padding: 16px 12px 8px; }
+}

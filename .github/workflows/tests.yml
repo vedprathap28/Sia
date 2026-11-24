@@ -1,0 +1,41 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      # Core packages only: Windows-only and heavy voice/RAG packages (pywin32, torch/whisper,
+      # chromadb) are not needed for the automated tests. Browser tests use the runner's Chrome.
+      - name: Install
+        run: |
+          pip install fastapi "uvicorn[standard]" python-dotenv httpx pydantic python-multipart sqlalchemy \
+            "apscheduler<4" tzlocal keyring langgraph langgraph-checkpoint-sqlite aiosqlite langchain-core \
+            langchain-openai langchain-groq groq openai playwright pillow pyperclip pymupdf python-docx \
+            openpyxl python-pptx send2trash psutil numpy pytest pytest-asyncio pyflakes
+      - name: Lint (errors only)
+        run: python -m pyflakes backend | grep -vE "imported but unused|redefinition of unused|f-string is missing|assigned to but never used" && exit 1 || true
+      - name: Tests
+        run: python -m pytest -q
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+        working-directory: frontend
+      - run: npm run build
+        working-directory: frontend

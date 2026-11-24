@@ -1,0 +1,76 @@
+# SIA v4 — Python 3.11–3.13, Windows 10/11
+# Install:  pip install -r backend/requirements.txt  &&  python -m playwright install chromium
+
+# ── Core ──────────────────────────────────────────────────────────────────────
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-dotenv>=1.0
+httpx>=0.27
+pydantic>=2.7
+python-multipart>=0.0.9
+sqlalchemy>=2.0
+apscheduler>=3.10,<4
+tzlocal>=5.0
+keyring>=25.0
+
+# ── Agents / LLMs ─────────────────────────────────────────────────────────────
+langgraph>=1.0
+langgraph-checkpoint-sqlite>=2.0
+aiosqlite>=0.20
+langchain-core>=1.0
+langchain-openai>=1.0
+langchain-groq>=1.0
+groq
+openai
+# langchain-anthropic        # optional: only if you set ANTHROPIC_API_KEY
+
+# ── Browser automation ────────────────────────────────────────────────────────
+playwright>=1.45
+
+# ── Computer use (Windows) ────────────────────────────────────────────────────
+pyautogui
+pygetwindow
+pywinauto; sys_platform == "win32"
+mss
+pillow
+pyperclip
+# pytesseract                # optional OCR (also install Tesseract-OCR for Windows)
+
+# ── Files & productivity ──────────────────────────────────────────────────────
+pymupdf>=1.23.0
+python-docx>=1.0.0
+openpyxl>=3.1
+python-pptx>=0.6.23
+send2trash
+
+# ── RAG + Vector DB ───────────────────────────────────────────────────────────
+chromadb>=0.4.0
+sentence-transformers>=2.2.0
+
+# ── Voice ─────────────────────────────────────────────────────────────────────
+openai-whisper>=20231117
+sounddevice>=0.4.6
+soundfile>=0.12.1
+numpy>=1.24.0
+pyttsx3>=2.90
+edge-tts
+gTTS
+playsound==1.2.2
+pygame
+SpeechRecognition
+
+# ── Existing OS automation ────────────────────────────────────────────────────
+pywin32; sys_platform == "win32"
+psutil
+pycaw; sys_platform == "win32"
+comtypes; sys_platform == "win32"
+screen-brightness-control
+winshell; sys_platform == "win32"
+
+# ── Optional integrations ─────────────────────────────────────────────────────
+tavily-python                 # better web_search when TAVILY_API_KEY is set
+# livekit livekit-agents livekit-plugins-silero livekit-api   # only if LIVEKIT_ENABLED=true
+
+# ── Tests ─────────────────────────────────────────────────────────────────────
+pytest>=8
+pytest-asyncio>=0.23

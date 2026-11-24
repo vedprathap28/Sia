@@ -1,0 +1,56 @@
+.thinking-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.thinking-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand) 0%, #0066cc 100%);
+  color: #fff;
+  font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px var(--brand-glow);
+}
+
+.thinking-bubble {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) var(--radius-sm);
+  background: transparent;
+  border: 1px solid var(--border);
+}
+
+[data-theme="dark"] .thinking-bubble {
+  background: rgba(0,212,255,0.03);
+  border-color: rgba(0,212,255,0.1);
+}
+
+.thinking-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 20px;
+}
+
+.t-dot {
+  display: block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 6px var(--brand-glow);
+}
+
+.thinking-text {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  font-family: var(--font-tech);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
